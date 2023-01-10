@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ol li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ol li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ol li:hover {
+  background: #ddd;
+}
+
+/* Style the header */
+.header {
+  background-color: #92b6b3;
+  padding: 30px 40px;
+  color: rgb(18, 26, 23);
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.btn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: rgb(40, 63, 59);
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.btn:hover {
+  background-color: #bbb;
+}
+
+#log {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 20px;
+  text-align: left;
+}
+
+</style>
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">Nemudruj a zapis sa na hokej</h2>
+  <input type="text" id="myInput" placeholder="Meno...">
+  <span onclick="newElement()" class="btn">Pridaj sa!</span>
+  <h2 style="margin:5px">Aktualny stav: </h2>   <h2  id="counter">0</h2>
+  <span onclick="clearElements()" class="btn">Reset</span>
+  <div id="log"></div>
+</div>
+
+<ol id="myUL">
+</ol>
+
+<script>
+function clearElements() {
+  if (document.getElementsByTagName("li").length == 0) {
+      document.getElementById("log").textContent="Klud, ved neni co resetovat."
+  } else if (confirm("Otruba, nerob blbosti. \n Urcite chces vymazat zoznam?") == true) {
+    document.getElementById("log").textContent=""
+    var myNodelist = document.querySelectorAll("li");
+      for (let i = 0; i < myNodelist.length; i++) {
+        myNodelist[i].remove();
+      }
+      var counter = document.getElementById("counter");
+      counter.textContent=0;
+  }
+}
+
+// New element
+function newElement() {
+  document.getElementById("log").textContent=""
+  var count = document.getElementsByTagName("li").length + 1;
+  if (count > 20) {
+    alert("Kto je pomaly, ma kokot maly :-)");
+  }
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(count +" "+ inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("Nerob kokotiny a zapis si meno...");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+    var counter = document.getElementById("counter");
+    counter.textContent=count;
+  }
+  document.getElementById("myInput").value = "";
+}
+
+</script>
+
+</body>
+</html>
