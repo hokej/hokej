@@ -108,7 +108,7 @@ input {
 <div id="myDIV" class="header">
   <h2 style="margin:5px">Nemudruj a zapis sa na hokej</h2>
   <input type="text" id="myInput" placeholder="Meno...">
-  <span onclick="newElement()" class="btn">Pridaj sa!</span>
+  <span onclick="newElement()" class="btn">Zapis</span>
   <h2 style="margin:5px">Aktualny stav: </h2>   <h2  id="counter">0</h2>
   <span onclick="clearElements()" class="btn">Reset</span>
   <div id="log"></div>
@@ -118,6 +118,8 @@ input {
 </ol>
 
 <script>
+
+
 function clearElements() {
   if (document.getElementsByTagName("li").length == 0) {
       document.getElementById("log").textContent="Klud, ved neni co resetovat."
@@ -147,8 +149,10 @@ function newElement() {
     alert("Nerob kokotiny a zapis si meno...");
   } else {
     document.getElementById("myUL").appendChild(li);
-    var counter = document.getElementById("counter");
-    counter.textContent=count;
+    if (count <= 20) {
+      var counter = document.getElementById("counter");
+      counter.textContent=count;
+    }
   }
   document.getElementById("myInput").value = "";
 }
