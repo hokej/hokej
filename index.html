@@ -106,7 +106,7 @@ input {
 <body>
 
 <div id="myDIV" class="header">
-  <h2 style="margin:5px">Nemudruj a zapis sa na hokej</h2>
+  <h2 style="margin:5px">Nemudruj a zapis sa na hokej :)</h2>
   <input type="text" id="myInput" placeholder="Meno...">
   <span onclick="newElement()" class="btn">Zapis</span>
   <h2 style="margin:5px">Aktualny stav: </h2>   <h2  id="counter">0</h2>
@@ -122,7 +122,7 @@ input {
 
 function clearElements() {
   if (document.getElementsByTagName("li").length == 0) {
-      document.getElementById("log").textContent="Klud, ved neni co resetovat."
+      document.getElementById("log").textContent="Klud, neni co resetovat."
   } else if (confirm("Otruba, nerob blbosti. \n Urcite chces vymazat zoznam?") == true) {
     document.getElementById("log").textContent=""
     var myNodelist = document.querySelectorAll("li");
@@ -139,14 +139,14 @@ function newElement() {
   document.getElementById("log").textContent=""
   var count = document.getElementsByTagName("li").length + 1;
   if (count > 20) {
-    alert("Kto je pomaly, ma kokot maly :-)");
+    alert("Smola :-)");
   }
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(count +" "+ inputValue);
   li.appendChild(t);
   if (inputValue === '') {
-    alert("Nerob kokotiny a zapis si meno...");
+    alert("Nerob hluposti, a zapis si meno...");
   } else {
     document.getElementById("myUL").appendChild(li);
     if (count <= 20) {
